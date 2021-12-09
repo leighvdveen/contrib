@@ -1,12 +1,29 @@
-# Scan the local Repo inside your CI Using Elastio's iScan Feature  
+# A Step-by_Step Guide to Scanning the Local Repo Inside your CI Using Elastio's Integrity Scan (iscan) Module
 
-#[Note in this example we are going to use gitlab but feel free to use any software version control tool you want]
+**Note:** We will use GitLab in this example, but feel free to use any software version control tool you want.
 
-## **1-Setup your CI environment**
-### **(1) First to run elastio in any os you have to provide the credentials of the aws account holding our elastio stack so you will add the following as variables in your repo with thier values { aws_access_key_id , aws_secret_access_key,region } to secure your credintials** 
-## **2-Deploy elastio inside your CI**
-### **(1) In the CI we run the command { ``` mkdir ~/.aws && touch ~/.aws/config ~/.aws/credentials ``` } to create the folder that AWS reads its credentials from
-### **(2) then we run the second command which take the variables that we added to the repo and adds them to the created  ~/.aws/config ~/.aws/credentials files
+## 1. Set up your CI environment
+
+The first step is to set up your CI (Continuous Integration) environment. 
+
+**Note:** To run Elastio on any operating system (OS), you must provide the credentials of the AWS account holding our Elastio Stack. As a result, to secure your credentials, you must add the following key-value pairs as variables to your repo: aws_access_key_id, aws_secret_access_key, and region.
+
+## 2. Deploy Elastio inside your CI 
+
+Here is a step-by-step guide to deploying Elastio inside your CI pipeline: 
+
+### Step 1
+
+To deploy Elastio inside your CI, you need to run the following command to creat the folder that AWS reads its credentials from: 
+
+```
+mkdir ~/.aws && touch ~/.aws/config ~/.aws/credentials 
+```
+
+### Step 2 
+
+Once this command has successfully completed, the next step is to take the variables that you added to your repo and add them to the reated  `~/.aws/config ~/.aws/credentials` files as follows: 
+
 ``` 
     - |
       cat << END_TEXT > ~/.aws/config
@@ -20,26 +37,35 @@
         aws_access_key_id = $aws_access_key_id
         aws_secret_access_key = $aws_secret_access_key
       END_TEXT
-
 ```
+### Step 3
 
-### **(3) we follow the Elastio docs to install `elastio` so we run the following commands**
+Run the following script in order to install the Elastio CLI and the Elastio Shell: 
+
 ```
 - apt install unzip curl git wget -y
 - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com elastio/elastio-stack/ master/scripts/install-elastio.sh)"
 - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64 zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install && apt install python3-pip -y
 - pip3 install --extra-index-url=https://dl.cloudsmith.io public/elastio/public/python/simple/  elastio-shell
 ```
-### **(4) we follow the Elastio docs to install `iscan`**
+
+ ### Step 4
+
+Run the follwown script to install the Integrity Scan (iscan) module: 
+
 ```
 - curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/elastio/elastio-stack/master/scripts/iscan > iscan
 - chmod +x iscan
 - mv iscan /usr/local/bin
  ```
 
-### **(5) we use iscan to scan the repo for any malware before building the project in the repo to make sure that our application is secure **
-#### - we have used `elastio file backup` function before  to backup a script named `malware.py`
-```
+### Step 5: 
+
+Use iscan to scan the local repo for any malware before building the software application contained within the repo to ensure that your software is secure. 
+
+**Note:** For this guide, we used the Elastio File Backup function to backup the following script called `malware.py`.
+
+```python
 
 import json
 import subprocess
@@ -53,7 +79,9 @@ else:
     raise SystemExit('Warning Threat Detected ')     
           
 ```
-and we will restore it and run it in the pipeline and this script examines the iscan results of our repo to ensure that no malware was detected before building the project to docker image  or performing any action on it
+This script examines the iscan results of your repo scan to ensure that the scan detected no malware before compiling and building the software application as a Docker image or performing any action on it. 
+
+Once this script has been scanned, we will restore it and run it as part of our CI pipeline. 
 
 ```
 - echo "n" | iscan -N "iscan"  --for malware ~/repo 
@@ -61,9 +89,12 @@ and we will restore it and run it in the pipeline and this script examines the i
 - elastio file restore --rp r-dgm0tnd3ob3shl08fddrzj4w
 - python3 malware.py
 ```
+
 ![set up project](https://i.ibb.co/Zdnxz6X/repo.png)
 
-## Finally the CI file should look like this
+## 3. The final structure of the CI script that tests and builds the Docker image
+
+Here is a copy of the Jenkins CI pipeline script that tests and builds the Docker image - using iscan to scan for malware before building the image:
 
 ```
 image:
@@ -139,7 +170,6 @@ docker-build:
     - docker push "$CI_REGISTRY_IMAGE:staging-$CI_COMMIT_REF_SLUG"
   only:
     - main
-
 ```
 
 
