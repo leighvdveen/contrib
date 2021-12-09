@@ -2,9 +2,9 @@
 
 A common problem, slowing down the SDLC (Software Development Life Cycles, occurs when the databases in the different environments (dev, qa, staging, and prod) are not in sync. And, without an automated process of sorts, DBAs will battle to ensure that every environment's databases are always synchronized. 
 
-To solve this challenge, our [Elastio Backup and Restore Database](https://docs.elastio.com/src/backup-restore/backup-databases.html){:target="_blank"} feature saves developers, DBAs, and DevOps Engineers a lot of manual work by automating the database migration function. 
+To solve this challenge, our [Elastio Backup and Restore Database](https://docs.elastio.com/src/backup-restore/backup-databases.html)feature saves developers, DBAs, and DevOps Engineers a lot of manual work by automating the database migration function. 
 
-**Note:** Elastio can migrate different databases. For more inforrmation on this topic, visit [docs.elastio.com/src/backup-restore/backup-databases.html](https://docs.elastio.com/src/backup-restore/backup-databases.html){:target="_blank"} 
+**Note:** Elastio can migrate different databases. For more inforrmation on this topic, visit [docs.elastio.com/src/backup-restore/backup-databases.html](https://docs.elastio.com/src/backup-restore/backup-databases.html)
 
 ## How to migrate a PostgreSQL database between two environments: An example
 
@@ -21,12 +21,12 @@ The following prerequisites are necessary before continuing with the process:
 
 ### Step 2: Installation
 
-- Download this project to your test environment from this [link](https://www.dropbox.com/s/14gdqj78810udln/IndexedSearchPythonDocker.zip?dl=0){:target="_blank"}
+- Download this project to your test environment from this [link](https://www.dropbox.com/s/14gdqj78810udln/IndexedSearchPythonDocker.zip?dl=0)
 - Install Docker on your test instance
 - Download and install PostgreSQL on both the database instances, if you don't already have PostgreSQL installed
 - Install Elastio on both database instances and the production server 
 
-**Note:** For steps on how to install the Elastio CLI, visit [docs.elastio.com/src/getting-started/install-cli](https://docs.elastio.com/src/getting-started/install-cli.html){:target="_blank"}
+**Note:** For steps on how to install the Elastio CLI, visit [docs.elastio.com/src/getting-started/install-cli](https://docs.elastio.com/src/getting-started/install-cli.html)
 
 ### Step 3: Using Elastio 
 
@@ -117,9 +117,9 @@ After you've successfully installed the PostgreSQL database server, created a da
 
    As you can see from the above screenshot, the web application has started and is functional.
 
- ## Using Elastio to migrate data between two or more instances
+## Using Elastio to migrate data between two or more instances
 
- Using Elastio to migrate data between two or more environments is a primarily automated and effortless process. Here is a step-by-step guide to migrate data between test and production:
+Using Elastio to migrate data between two or more environments is a primarily automated and effortless process. Here is a step-by-step guide to migrate data between test and production:
 
 1. Navigate to the DB instance that you want to migrate from
 
