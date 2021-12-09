@@ -14,7 +14,7 @@ Here is a step-by-step guide to deploying Elastio inside your CI pipeline:
 
 ### Step 1
 
-To deploy Elastio inside your CI, you need to run the following command to creat the folder that AWS reads its credentials from: 
+To deploy Elastio inside your CI, you need to run the following command to create the folder that AWS reads its credentials from: 
 
 ```
 mkdir ~/.aws && touch ~/.aws/config ~/.aws/credentials 
@@ -22,7 +22,7 @@ mkdir ~/.aws && touch ~/.aws/config ~/.aws/credentials
 
 ### Step 2 
 
-Once this command has successfully completed, the next step is to take the variables that you added to your repo and add them to the reated  `~/.aws/config ~/.aws/credentials` files as follows: 
+Once this command has successfully completed, the next step is to take the variables that you added to your repo and add them to the created  `~/.aws/config ~/.aws/credentials` files as follows: 
 
 ``` 
     - |
