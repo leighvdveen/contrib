@@ -51,7 +51,7 @@ Run the following script in order to install the Elastio CLI and the Elastio She
 
  ### Step 4
 
-Run the follwown script to install the Integrity Scan (iscan) module: 
+Run the following script to install the Integrity Scan (iscan) module: 
 
 ```
 - curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/elastio/elastio-stack/master/scripts/iscan > iscan
