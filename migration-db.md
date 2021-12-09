@@ -1,6 +1,6 @@
 # Migrate a PostgreSQL Database From One Environment to Another Using Elastio
 
-A common problem, slowing down the SDLC (Software Development Life Cycles, occurs when the databases in the different environments (dev, qa, staging, and prod) are not in sync. And, without an automated process of sorts, DBAs will battle to ensure that every environment's databases are always synchronized. 
+A common problem, slowing down the SDLC (Software Development Life Cycles, occurs when the databases in the different environments (dev, qa, staging, and prod) are not in sync. And, without an automated process, DBAs will battle to ensure that every environment's databases are always synchronized. 
 
 To solve this challenge, our [Elastio Backup and Restore Database](https://docs.elastio.com/src/backup-restore/backup-databases.html){:target="_blank"} feature saves developers, DBAs, and DevOps Engineers a lot of manual work by automating the database migration function. 
 
